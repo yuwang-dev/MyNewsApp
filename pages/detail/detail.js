@@ -1,11 +1,12 @@
 // pages/detail/detail.js
+let wxparse = require("../../wxparse/wxParse.js");
 let newsUrl;
 let newsTitle;
 let newsAuthor;
 let newsId;
-let articleContent;
 let indexIsHidden;
-let newsContent;
+let newsContentTemp = '';
+let newsContent = '';
 Page({
 
   /**
@@ -41,15 +42,21 @@ Page({
       data: {
       },
       success: res => {
-        console.log(res)
         let resultData = res.data.result.content
+
         console.log(resultData)
         for (let i = 0; i < resultData.length; i++){
-          if (resultData[i].hasOwnProperty("text")){
-            newsContent += resultData.text[i]
+          if (resultData[i].type == "image"){
+            newsContentTemp += "<img src=\"" + resultData[i].src + "\"/>"
+          } else if (resultData[i].type == "p"){
+            newsContentTemp += "<p>" + resultData[i].text + "</p>"
+          } else if (resultData[i].type == "strong"){
+            newsContentTemp += "<strong>" + resultData[i].text + "</strong>"
           }
         }
-        console.log(newsContent)
+        console.log("haha::" + newsContentTemp)
+        wxparse.wxParse('newsContentTemp', 'html', newsContentTemp,this,5)
+        console.log("hehe::" + newsContent)
       },
       fail: error => {
         console.log(error)
