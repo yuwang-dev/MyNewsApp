@@ -44,7 +44,6 @@ Page({
     this.loadNewsList()
   },
   loadNewsList(){
-    console.log(newsType)
     let _this = this
     wx.request({
       url: 'https://test-miniprogram.com/api/news/list',
@@ -53,12 +52,18 @@ Page({
       },
       success: res => {
         let resultData = res.data.result
-        console.log(resultData)
-        console.log(res)
         //获取头部轮播图片
         for (let n = 0; n < 3; n++) {
           topPic[n].url = resultData[n].firstImage
         }
+        
+        for (let i = 0; i < resultData.length; i++){
+          resultData[i].date = resultData[i].date.match(/T(\S*).000Z/)[1];
+          if (resultData[i].firstImage == ""){
+            resultData[i].firstImage = "/img/lightrain-icon.png"
+          }
+        }
+        
         _this.setData({
           contentNewsList: resultData,
           indexIsHidden: true,
@@ -67,7 +72,7 @@ Page({
 
       },
       fail: error => {
-         console.log(error)
+
       },
       complete: () => {
 
@@ -77,6 +82,12 @@ Page({
   onLoad: function () {
     newsType = 'gn'
     this.loadNewsList()
+  },
+  onPullDownRefresh: function() {
+    newsType = 'gn'
+    this.loadNewsList(() => {
+      wx.stopPullDownRefresh()
+    })
   },
   viewDetail: function (e) {
     newsId = e.currentTarget.dataset.newsid;

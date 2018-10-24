@@ -14,7 +14,7 @@
 }
 
 .news-source::before {
-  content: '新闻来源: ';
+  
   color: #909090;
   font-size: 26rpx;
 }
@@ -33,13 +33,7 @@
   word-break:break-word;
   display:block;
 }
-.contentTip {
-  font-size: 40rpx;
-  font-family: Microsoft YaHei;
-  text-align: justify;
-  margin-bottom: 40rpx;
-  color: #4B7BB7;
-}
+
 .article-content {
   color: #000;
   font-size: 36rpx;

@@ -5,7 +5,6 @@ let newsTitle;
 let newsAuthor;
 let newsId;
 let indexIsHidden;
-let newsContentTemp = '';
 let newsContent = '';
 Page({
 
@@ -37,29 +36,26 @@ Page({
   },
   loadDetail(){
     let _this = this
+    let newsContent = ''
     wx.request({
       url: 'https://test-miniprogram.com/api/news/detail' + '?id=' + newsId,
       data: {
       },
       success: res => {
         let resultData = res.data.result.content
-
-        console.log(resultData)
         for (let i = 0; i < resultData.length; i++){
           if (resultData[i].type == "image"){
-            newsContentTemp += "<img src=\"" + resultData[i].src + "\"/>"
+            newsContent += "<img src=\"" + resultData[i].src + "\"/>"
           } else if (resultData[i].type == "p"){
-            newsContentTemp += "<p>" + resultData[i].text + "</p>"
+            newsContent += "<p>" + resultData[i].text + "</p>"
           } else if (resultData[i].type == "strong"){
-            newsContentTemp += "<strong>" + resultData[i].text + "</strong>"
+            newsContent += "<strong>" + resultData[i].text + "</strong>"
           }
         }
-        console.log("haha::" + newsContentTemp)
-        wxparse.wxParse('newsContentTemp', 'html', newsContentTemp,this,5)
-        console.log("hehe::" + newsContent)
+        wxparse.wxParse('newsContent', 'html', newsContent,this,5)
       },
       fail: error => {
-        console.log(error)
+
       },
       complete: () => {
 

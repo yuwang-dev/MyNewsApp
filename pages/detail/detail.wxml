@@ -6,9 +6,8 @@
     <view class='news-source'>{{newsAuthor}}</view>
   </view>
   <view class='content'>
-    <view class='contentTip'>{{contentTip}}</view>
     <view class='article-content'>
-      <template is='wxParse' data="{{wxParseData:newsContentTemp.nodes}}"/>
+      <template is='wxParse' data="{{wxParseData:newsContent.nodes}}"/>
     </view>
   </view>
   <loading hidden='{{indexIsHidden}}'>正在加载</loading>

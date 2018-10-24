@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "头条新闻",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "友达新闻",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   }
 }
