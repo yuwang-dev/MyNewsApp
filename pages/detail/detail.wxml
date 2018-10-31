@@ -3,7 +3,11 @@
 <view class='detail'>
   <view class='header'>
     <view class='article-title'>{{newsTitle}}</view>
+  </view>
+  <view class='header-two'>
     <view class='news-source'>{{newsAuthor}}</view>
+    <view class='news-date'>{{newsDate}}</view>
+    <view class='news-read-record'>阅读</view>
   </view>
   <view class='content'>
     <view class='article-content'>

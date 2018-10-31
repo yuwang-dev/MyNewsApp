@@ -7,8 +7,12 @@
 .header {
   margin: 40rpx 30rpx 0rpx 30rpx;
   border-bottom: 1px solid #e5e5e5;
+  
 }
-
+.header-two{
+  display:flex;
+  flex-direction: row;
+}
 .article-title {
   font-size: 44rpx;
 }
@@ -17,6 +21,7 @@
   
   color: #909090;
   font-size: 26rpx;
+  
 }
 
 .news-source {
@@ -24,6 +29,21 @@
   font-size: 26rpx;
   margin-top: 28rpx;
   margin-bottom: 20rpx;
+  width: 20%;
+}
+.news-read-record{
+  color: #909090;
+  font-size: 26rpx;
+  margin-top: 28rpx;
+  margin-bottom: 20rpx;
+  width: 10%;
+}
+.news-date{
+  color: #909090;
+  font-size: 26rpx;
+  margin-top: 28rpx;
+  margin-bottom: 20rpx;
+  width: 70%;
 }
 .content {
   margin:30rpx 30rpx 30rpx 30rpx;

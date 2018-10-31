@@ -3,6 +3,7 @@ let wxparse = require("../../wxparse/wxParse.js");
 let newsUrl;
 let newsTitle;
 let newsAuthor;
+let newsDate;
 let newsId;
 let indexIsHidden;
 let newsContent = '';
@@ -14,8 +15,7 @@ Page({
   data: {
     newsTitle: newsTitle,
     newsUrl: newsUrl,
-    newsAuthor: newsAuthor,
-    contentTip: '由于后台接口原因，新闻具体内容无法编辑，只返回了一个新闻链接...'
+    newsAuthor: newsAuthor
   },
 
   /**
@@ -37,11 +37,13 @@ Page({
   loadDetail(){
     let _this = this
     let newsContent = ''
+    let newsDate = ''
     wx.request({
       url: 'https://test-miniprogram.com/api/news/detail' + '?id=' + newsId,
       data: {
       },
       success: res => {
+        console.log(res)
         let resultData = res.data.result.content
         for (let i = 0; i < resultData.length; i++){
           if (resultData[i].type == "image"){
@@ -53,6 +55,13 @@ Page({
           }
         }
         wxparse.wxParse('newsContent', 'html', newsContent,this,5)
+        
+        newsDate = res.data.result.date
+        newsDate = newsDate.match(/T(\S*).000Z/)[1]
+        console.log(newsDate)
+        _this.setData({
+          newsDate: newsDate
+        })
       },
       fail: error => {
 
@@ -60,9 +69,7 @@ Page({
       complete: () => {
 
       }
-    }),
-      _this.setData({
-        newsContent : newsContent
-      })
+    })
+      
   }
 })
