@@ -4,9 +4,11 @@ let newsUrl;
 let newsTitle;
 let newsAuthor;
 let newsDate;
+let newsReadRecord;
 let newsId;
 let indexIsHidden;
 let newsContent = '';
+let newReadRecordNum = 0
 Page({
 
   /**
@@ -38,6 +40,7 @@ Page({
     let _this = this
     let newsContent = ''
     let newsDate = ''
+    
     wx.request({
       url: 'https://test-miniprogram.com/api/news/detail' + '?id=' + newsId,
       data: {
@@ -55,12 +58,18 @@ Page({
           }
         }
         wxparse.wxParse('newsContent', 'html', newsContent,this,5)
-        
+        newReadRecordNum += 1
         newsDate = res.data.result.date
         newsDate = newsDate.match(/T(\S*).000Z/)[1]
         console.log(newsDate)
+        if (newsDate == ""){
+          newsDate = ""
+        }
+        newsReadRecord = "阅读:" + newReadRecordNum
+        console.log(newsReadRecord)
         _this.setData({
-          newsDate: newsDate
+          newsDate: newsDate,
+          newsReadRecord: newsReadRecord
         })
       },
       fail: error => {

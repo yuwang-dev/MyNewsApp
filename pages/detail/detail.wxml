@@ -7,7 +7,7 @@
   <view class='header-two'>
     <view class='news-source'>{{newsAuthor}}</view>
     <view class='news-date'>{{newsDate}}</view>
-    <view class='news-read-record'>阅读</view>
+    <view class='news-read-record'>{{newsReadRecord}}</view>
   </view>
   <view class='content'>
     <view class='article-content'>
